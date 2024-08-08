@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一键安装 Go 脚本 - 支持 CentOS、Ubuntu、Debian</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <meta name="description" content="一键安装 Go 编程语言的脚本，支持 CentOS、Ubuntu 和 Debian 系统。快速下载安装 Go 语言环境，让开发更高效。">
+    <meta name="keywords" content="Go, Go 语言, Go 安装脚本, 一键安装, CentOS, Ubuntu, Debian, 编程, 开发">
+    <meta name="robots" content="index, follow">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #CDEBFF 100%, #FFFFFF 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        p {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #757575;
+        }
+        pre {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 16px;
+            overflow: auto;
+
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin: auto;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:focus {
+            outline: none;
+        }
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            top: 30px;
+            font-size: 17px;
+        }
+        #toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @-webkit-keyframes fadein {
+            from {top: 0; opacity: 0;}
+            to {top: 30px; opacity: 1;}
+        }
+        @keyframes fadein {
+            from {top: 0; opacity: 0;}
+            to {top: 30px; opacity: 1;}
+        }
+        @-webkit-keyframes fadeout {
+            from {top: 30px; opacity: 1;}
+            to {top: 0; opacity: 0;}
+        }
+        @keyframes fadeout {
+            from {top: 30px; opacity: 1;}
+            to {top: 0; opacity: 0;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>下载 Go 安装脚本</h1>
+    <p>支持CentOS、Ubuntu、Debian</p>
+    <pre id="download-command">wget -O go_install.sh https://go.970558.cn/go_install.sh && bash go_install.sh</pre>
+    <button onclick="copyCommand()">
+        复制命令
+    </button>
+</div>
+
+<div id="toast">命令已复制到剪贴板！</div>
+
+<script>
+    async function copyCommand() {
+        const command = document.getElementById('download-command').innerText;
+        try {
+            await navigator.clipboard.writeText(command);
+            showToast('命令已复制到剪贴板！');
+        } catch (err) {
+            console.error('复制命令失败:', err);
+            showToast('复制命令失败，请手动复制。');
+        }
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = "show";
+        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+    }
+</script>
+
+</body>
+</html>
